@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="youtube.png">
+    <title>My Tube</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        ul{
+            display: flex;
+            background-color: black;
+            height: 50px;
+            width: 100%;
+            padding: 20px;
+            margin-top: 0px;
+        }
+        li{
+            list-style: none;
+        }
+        #search{
+            height: 20px;
+            width: 200%; 
+            margin-left: 300%;
+        }
+        button{
+          
+          margin-left: 1240%;
+          margin-top: 2px;
+          
+        }
+      h3{
+            margin-top: 0px;
+            color:wheat;
+        }
+        #main{
+         display: flex;
+         height: 600px;
+         margin-top: 20px;
+     }
+     #video_details{
+        flex:3;
+     }
+     #recommendation{
+        flex:1
+     }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><h3>My tube</h3></li>
+        <li><input type="text" id="search"/></li>
+        <li><button type="submit" onclick="searchVideo()">search</button></li>
+    </ul>
+    <div id="main">
+        <div id="video_details"></div>
+        <div id="recommendation"></div>
+      </div>
+</body>
+</html>
+
+<script>
+    let populardata=JSON.parse(localStorage.getItem("clickpopular"))
+    console.log(populardata);
+
+
+    let iframe=document.createElement("iframe")
+    
+    iframe.src=`https://www.youtube.com/embed/${populardata.id}`
+    iframe.width="99%";
+    iframe.height="80%";
+
+    let title=document.createElement("h2")
+    title.textContent=populardata.snippet.title
+
+
+    document.querySelector("#video_details").append(iframe,title)
+</script>
